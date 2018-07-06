@@ -1,0 +1,55 @@
+{{define "title"}}Create Record{{end}}
+
+{{define "body"}}
+<h2>History</h2>
+<br><br>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="history.html" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control rect-input-form" id="KeySearch" name="KeySearch" placeholder="Key">
+              <option>Select a Key to Update</option>
+              {{range $i, $BlockResponse := .ResponseData}}
+                <option>{{$BlockResponse.Key}}</option>
+              {{end}}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group text-center">
+            <input type="hidden" name="requested" value="{{.TransactionRequested}}">
+            <button type="submit" class="btn btn-default text-center">Get History</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{ if eq .TransactionRequested "true"}}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    {{range $i, $BlockResponse := .RecordHistory}}
+    <p>TXN ID: <strong>{{$BlockResponse.TxId}}</strong> Timestamp: <strong>{{$BlockResponse.Timestamp}}</strong></p>
+    <table class="table table-striped" style="margin-top:5px;">
+      <thead>
+        <tr>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          
+          <td>{{$BlockResponse.Value.Value}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    {{end}}
+  </div>
+</div>
+{{end}}
+
+
+{{end}}

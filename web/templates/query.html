@@ -1,0 +1,25 @@
+
+{{define "title"}}Home{{end}}
+
+{{define "body"}}
+<div class="container">
+
+</div>
+<h3>Record - Query One</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Key</th>
+      <th scope="col">Value</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{.ResponseData.Key}}</td>
+      <td>{{.ResponseData.Value}}</td>
+    </tr>
+  </tbody>
+</table>
+{{end}}
